@@ -9,11 +9,13 @@
  *
  */
 
+namespace ezeasorekene\NGPaymentGateway;
+
 class RemitaPayments
 {
 
   public $user_id = string;
-  public $transation_id;
+  public $transaction_id = string;
   public $amount = float;
   public $rrr = int;
   public $payerName = string;
@@ -34,9 +36,9 @@ class RemitaPayments
   protected $apiHash = string;
   protected $dbconnect;
 
-  private const MERCHANT = "2547916";
+  private const MERCHANT = 2547916;
   private const APIKEY = "1946";
-  private const SERVICETYPEID = "4430731";
+  private const SERVICETYPEID = 4430731;
 
   function __construct($mode,$merchant=self::MERCHANT,$apiKey=self::APIKEY,$serviceTypeId=self::SERVICETYPEID)
   {
@@ -96,16 +98,19 @@ class RemitaPayments
     // Execute the POST request
     $result = curl_exec($curl);
 
+    // Troubleshoot and Debug cURL
+    // if (curl_exec($curl) === false) {
+    //   echo 'Curl error: ' . curl_error($curl); exit;
+    // } else {
+    //   var_dump($result); exit;
+    // }
+
     // Close cURL resource
     curl_close($curl);
 
     //Get the response
     $jsonData = substr($result, 7, -1);
     $rrr = json_decode($jsonData, true);
-
-    // Troubleshoot
-    // var_dump($result);
-    // exit;
 
     //Return the result
     if ($rrr['statuscode']==='025') {
@@ -116,8 +121,8 @@ class RemitaPayments
   }
 
   /**
-   * Save generated RRR to database for future use
-   * @param string $transation_id
+   * Check the status of a transaction using RRR
+   * @param string $rrr
    * @param string $return_type
    * @return mixed
    */
@@ -184,11 +189,11 @@ class RemitaPayments
 
   /**
    * Check the status of transaction using transaction id
-   * @param string $transation_id
+   * @param string $transaction_id
    * @param string $return_type
    * @return mixed
    */
-  public function checkTransactionIDStatus($transation_id=null,$return_type="bool")
+  public function checkTransactionIDStatus($transaction_id=null,$return_type="bool")
   {
     // Check if mode is demo or live
     if ($this->mode=='LIVE') {
@@ -197,8 +202,8 @@ class RemitaPayments
       $url = "https://remitademo.net/remita/exapp/api/v1/send/api/echannelsvc";
     }
 
-    if (isset($transation_id)) {
-      $this->transation_id = $transation_id;
+    if (isset($transaction_id)) {
+      $this->transation_id = $transaction_id;
     }
     $this->apiHash = hash('SHA512',$this->transation_id.$this->apiKey.$this->merchantId);
     $url = $url."/$this->merchantId/$this->transation_id/$this->apiHash/status.reg";
@@ -314,17 +319,17 @@ class RemitaPayments
    * @param string $user_id
    * @return null
    */
-  public static function setUserID($user_id)
+  public function setUserID($user_id)
   {
     $this->user_id = $user_id;
   }
 
   /**
    * Set the transaction id
-   * @param string $transation_id
+   * @param string $transaction_id
    * @return null
    */
-  public static function setTransactionID($transaction_id)
+  public function setTransactionID($transaction_id)
   {
     $this->transaction_id = $transaction_id;
   }
@@ -334,7 +339,7 @@ class RemitaPayments
    * @param string $rrr
    * @return null
    */
-  public static function setRRR($rrr)
+  public function setRRR($rrr)
   {
     $this->rrr = $rrr;
   }
@@ -344,7 +349,7 @@ class RemitaPayments
    * @param string $payerName
    * @return null
    */
-  public static function setpayerName($payerName)
+  public function setpayerName($payerName)
   {
     $this->payerName = $payerName;
   }
@@ -354,7 +359,7 @@ class RemitaPayments
    * @param string $payerEmail
    * @return null
    */
-  public static function setpayerEmail($payerEmail)
+  public function setpayerEmail($payerEmail)
   {
     $this->payerEmail = $payerEmail;
   }
@@ -364,7 +369,7 @@ class RemitaPayments
    * @param string $payerPhone
    * @return null
    */
-  public static function setpayerPhone($payerPhone)
+  public function setpayerPhone($payerPhone)
   {
     $this->payerPhone = $payerPhone;
   }
@@ -374,7 +379,7 @@ class RemitaPayments
    * @param string $paymentDescription
    * @return null
    */
-  public static function setpaymentDescription($paymentDescription)
+  public function setpaymentDescription($paymentDescription)
   {
     $this->paymentDescription = $paymentDescription;
   }
@@ -384,7 +389,7 @@ class RemitaPayments
    * @param string $amount
    * @return null
    */
-  public static function setAmount($amount)
+  public function setAmount($amount)
   {
     $this->amount = $amount;
   }
@@ -394,21 +399,7 @@ class RemitaPayments
    * @param string $mode
    * @return null
    */
-  public static function setMode($mode)
-  {
-    if ($mode==="LIVE" || $mode==="DEMO") {
-      $this->mode = $mode;
-    } else {
-      $this->mode = "DEMO";
-    }
-  }
-
-  /**
-   * Set the mode of the API to be used
-   * @param string $mode
-   * @return null
-   */
-  public static function setAPIParamaters($apiKey,$merchantId,$serviceTypeId)
+  public function setMode($mode)
   {
     if ($mode==="LIVE" || $mode==="DEMO") {
       $this->mode = $mode;
