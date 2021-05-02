@@ -26,6 +26,10 @@ class RemitaPayments
   private $merchantId = int;
   private $apiKey;
   private $mode = string;
+  private $dbhost = string;
+  private $dbuser = string;
+  private $dbpass = string;
+  private $dbname = string;
 
   protected $apiHash = string;
   protected $dbconnect;
@@ -33,18 +37,9 @@ class RemitaPayments
   private const MERCHANT = "2547916";
   private const APIKEY = "1946";
   private const SERVICETYPEID = "4430731";
-  private const DBHOST = "dbhost";
-  private const DBUSER = "dbuser";
-  private const DBPASS = "dbpass";
-  private const DBNAME = "dbname";
 
   function __construct($mode,$merchant=self::MERCHANT,$apiKey=self::APIKEY,$serviceTypeId=self::SERVICETYPEID)
   {
-    $this->dbconnect = new mysqli(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
-    if ($this->dbconnect->connect_error) {
-      die('Failed to connect to MySQL - ' . $this->dbconnect->connect_error);
-    }
-
     $this->setMode($mode);
     $this->merchantId = $merchant;
     $this->apiKey = $apiKey;
@@ -92,8 +87,8 @@ class RemitaPayments
 
     $curl = curl_init();
     // Attach encoded JSON string to the POST fields
-  	curl_setopt($curl, CURLOPT_POST, 1);
-  	curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Authorization: remitaConsumerKey={$this->merchantId},remitaConsumerToken={$this->apiHash}"));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -242,6 +237,22 @@ class RemitaPayments
   }
 
   /**
+   * Connect to the database to use database related functions
+   * @param string $dbhost
+   * @param string $dbuser
+   * @param string $dbpass
+   * @param string $dbname
+   * @return null
+   */
+  public function dbconnect($dbhost,$dbuser,$dbpass,$dbname)
+  {
+    $this->dbconnect = new mysqli(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
+    if ($this->dbconnect->connect_error) {
+      die('Failed to connect to MySQL - ' . $this->dbconnect->connect_error);
+    }
+  }
+
+  /**
    * Save generated RRR to database for future use
    * @param int $rrr
    * @param string $payment_purpose
@@ -303,7 +314,7 @@ class RemitaPayments
    * @param string $user_id
    * @return null
    */
-  public function setUserID($user_id)
+  public static function setUserID($user_id)
   {
     $this->user_id = $user_id;
   }
@@ -313,7 +324,7 @@ class RemitaPayments
    * @param string $transation_id
    * @return null
    */
-  public function setTransactionID($transaction_id)
+  public static function setTransactionID($transaction_id)
   {
     $this->transaction_id = $transaction_id;
   }
@@ -323,7 +334,7 @@ class RemitaPayments
    * @param string $rrr
    * @return null
    */
-  public function setRRR($rrr)
+  public static function setRRR($rrr)
   {
     $this->rrr = $rrr;
   }
@@ -333,7 +344,7 @@ class RemitaPayments
    * @param string $payerName
    * @return null
    */
-  public function setpayerName($payerName)
+  public static function setpayerName($payerName)
   {
     $this->payerName = $payerName;
   }
@@ -343,7 +354,7 @@ class RemitaPayments
    * @param string $payerEmail
    * @return null
    */
-  public function setpayerEmail($payerEmail)
+  public static function setpayerEmail($payerEmail)
   {
     $this->payerEmail = $payerEmail;
   }
@@ -353,7 +364,7 @@ class RemitaPayments
    * @param string $payerPhone
    * @return null
    */
-  public function setpayerPhone($payerPhone)
+  public static function setpayerPhone($payerPhone)
   {
     $this->payerPhone = $payerPhone;
   }
@@ -363,7 +374,7 @@ class RemitaPayments
    * @param string $paymentDescription
    * @return null
    */
-  public function setpaymentDescription($paymentDescription)
+  public static function setpaymentDescription($paymentDescription)
   {
     $this->paymentDescription = $paymentDescription;
   }
@@ -373,7 +384,7 @@ class RemitaPayments
    * @param string $amount
    * @return null
    */
-  public function setAmount($amount)
+  public static function setAmount($amount)
   {
     $this->amount = $amount;
   }
@@ -383,7 +394,21 @@ class RemitaPayments
    * @param string $mode
    * @return null
    */
-  public function setMode($mode)
+  public static function setMode($mode)
+  {
+    if ($mode==="LIVE" || $mode==="DEMO") {
+      $this->mode = $mode;
+    } else {
+      $this->mode = "DEMO";
+    }
+  }
+
+  /**
+   * Set the mode of the API to be used
+   * @param string $mode
+   * @return null
+   */
+  public static function setAPIParamaters($apiKey,$merchantId,$serviceTypeId)
   {
     if ($mode==="LIVE" || $mode==="DEMO") {
       $this->mode = $mode;
