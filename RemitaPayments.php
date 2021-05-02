@@ -1,4 +1,14 @@
 <?php
+/**
+ *
+ * @author Ekene Ezeasor <ezeasorekene@unizik.edu.ng>
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @copyright Copyright (c) 2021, Ekene Ezeasor
+ * @package RemitaPayments
+ * @version 1.0.0
+ *
+ */
+
 class RemitaPayments
 {
 
@@ -15,6 +25,7 @@ class RemitaPayments
 
   private $merchantId = int;
   private $apiKey;
+  private $mode = string;
 
   protected $apiHash = string;
   protected $dbconnect;
@@ -27,22 +38,33 @@ class RemitaPayments
   private const DBPASS = "dbpass";
   private const DBNAME = "dbname";
 
-  function __construct($merchant=self::MERCHANT,$apiKey=self::APIKEY,$serviceTypeId=self::SERVICETYPEID)
+  function __construct($mode,$merchant=self::MERCHANT,$apiKey=self::APIKEY,$serviceTypeId=self::SERVICETYPEID)
   {
     $this->dbconnect = new mysqli(self::DBHOST, self::DBUSER, self::DBPASS, self::DBNAME);
     if ($this->dbconnect->connect_error) {
       die('Failed to connect to MySQL - ' . $this->dbconnect->connect_error);
     }
 
+    $this->setMode($mode);
     $this->merchantId = $merchant;
     $this->apiKey = $apiKey;
     $this->serviceTypeId = $serviceTypeId;
-    $this->transaction_id = "CIRMS".uniqid(mt_rand());
+    $this->transaction_id = uniqid(mt_rand());
   }
 
+  /**
+   * Generate RRR using given parameters
+   * @param array $parameters
+   * @return mixed
+   */
   public function generateRRR(array $parameters = [])
   {
-    $url = "https://remitademo.net/remita/exapp/api/v1/send/api/echannelsvc/merchant/api/paymentinit";
+    // Check if mode is demo or live
+    if ($this->mode=='LIVE') {
+      $url = "https://login.remita.net/remita/exapp/api/v1/send/api/echannelsvc/merchant/api/paymentinit";
+    } else {
+      $url = "https://remitademo.net/remita/exapp/api/v1/send/api/echannelsvc/merchant/api/paymentinit";
+    }
 
     // Create a new cURL resource
     $this->apiHash = hash('SHA512',$this->merchantId.$this->serviceTypeId.$this->transaction_id.$this->amount.$this->apiKey);
@@ -72,9 +94,9 @@ class RemitaPayments
     // Attach encoded JSON string to the POST fields
   	curl_setopt($curl, CURLOPT_POST, 1);
   	curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
-  	curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Authorization: remitaConsumerKey={$this->merchantId},remitaConsumerToken={$this->apiHash}"));
-  	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
     // Execute the POST request
     $result = curl_exec($curl);
@@ -98,13 +120,27 @@ class RemitaPayments
     }
   }
 
+  /**
+   * Save generated RRR to database for future use
+   * @param string $transation_id
+   * @param string $return_type
+   * @return mixed
+   */
   public function checkRRRStatus(int $rrr=null,$return_type="bool")
   {
+    // Check if mode is demo or live
+    if ($this->mode=='LIVE') {
+      $url = "https://login.remita.net/remita/exapp/api/v1/send/api/echannelsvc";
+    } else {
+      // $url = "https://www.remitademo.net/remita/ecomm";
+      $url = "https://remitademo.net/remita/exapp/api/v1/send/api/echannelsvc";
+    }
+
     if (isset($rrr)) {
       $this->rrr = $rrr;
     }
     $this->apiHash = hash('SHA512',$this->rrr.$this->apiKey.$this->merchantId);
-    $url = "https://remitademo.net/remita/exapp/api/v1/send/api/echannelsvc/$this->merchantId/$this->rrr/$this->apiHash/status.reg";
+    $url = $url."/$this->merchantId/$this->rrr/$this->apiHash/status.reg";
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_TIMEOUT, 1000);
@@ -140,20 +176,81 @@ class RemitaPayments
 
   }
 
-  public function generateTransactionID($prefix)
+  /**
+   * Generate and set transaction id
+   * @param string $prefix
+   * @return null
+   */
+  public function generateTransactionID($prefix=null)
   {
-    $this->transaction_id = $prefix.'-'.uniqid(mt_rand());
+    isset($prefix) ? $prefix = $prefix : $prefix = 'REMITA';
+    $this->transaction_id = $prefix.uniqid(mt_rand());
   }
 
-  public function checkTransactionIDStatus($transation_id)
+  /**
+   * Check the status of transaction using transaction id
+   * @param string $transation_id
+   * @param string $return_type
+   * @return mixed
+   */
+  public function checkTransactionIDStatus($transation_id=null,$return_type="bool")
   {
-    // To be done
+    // Check if mode is demo or live
+    if ($this->mode=='LIVE') {
+      $url = "https://login.remita.net/remita/exapp/api/v1/send/api/echannelsvc";
+    } else {
+      $url = "https://remitademo.net/remita/exapp/api/v1/send/api/echannelsvc";
+    }
+
+    if (isset($transation_id)) {
+      $this->transation_id = $transation_id;
+    }
+    $this->apiHash = hash('SHA512',$this->transation_id.$this->apiKey.$this->merchantId);
+    $url = $url."/$this->merchantId/$this->transation_id/$this->apiHash/status.reg";
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 1000);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:application/json","Authorization:remitaConsumerKey={$merchantId},remitaConsumerToken={$apiHash}"));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    //Get the response
+    $rrr = json_decode($result, true);
+
+    // Troubleshoot
+    // var_dump($result);
+    // exit;
+
+    //Return the result
+    if ($rrr['status']==='00' && $rrr['message']==='Successful') {
+      if ($return_type==="array") {
+        $details = array(
+          'rrr' => $rrr['RRR'],
+          'transaction_date' => $rrr['transactiontime'],
+          'debit_date' => $rrr['paymentDate'],
+          'status' => 'Paid'
+        );
+        return $details;
+      } else {
+        return true; //$rrr['message'];
+      }
+    } else {
+      return false; //$rrr['message'];
+    }
   }
 
-  public function saveGeneratedRRR($rrr,$payment_purpose,$dept_code)
+  /**
+   * Save generated RRR to database for future use
+   * @param int $rrr
+   * @param string $payment_purpose
+   * @return bool
+   */
+  public function saveGeneratedRRR(int $rrr,$payment_purpose)
   {
-    $sql = "INSERT INTO payments (transaction_id,reg_number,rrr,payment_purpose,dept_code,servicetype_id,amount,status,payer_name,payer_email,payer_phone)
-    VALUES('$this->transaction_id','$this->reg_number','$this->rrr','$payment_purpose','$dept_code','$this->serviceTypeId','$this->amount','Pending','$this->payerName','$this->payerEmail','$this->payerPhone')";
+    $sql = "INSERT INTO payments (transaction_id,user_id,rrr,payment_purpose,servicetype_id,amount,status,payer_name,payer_email,payer_phone)
+    VALUES('$this->transaction_id','$this->user_id','$this->rrr','$payment_purpose','$this->serviceTypeId','$this->amount','Pending','$this->payerName','$this->payerEmail','$this->payerPhone')";
     $result = $this->dbconnect->query($sql) or die($this->dbconnect->error);
     if ($this->dbconnect->affected_rows > 0) {
       return true;
@@ -162,6 +259,11 @@ class RemitaPayments
     }
   }
 
+  /**
+   * Update payment status
+   * @param array $details
+   * @return bool
+   */
   public function updatePaymentStatus(array $details)
   {
     $rrr = $details['rrr'];
@@ -178,57 +280,123 @@ class RemitaPayments
     }
   }
 
+  /**
+   * Pay generated RRR
+   * @todo create function to pay rrr
+   */
   public function payRRR($rrr)
   {
     // To be done
   }
 
-  public function PaymentListener($value='')
+  /**
+   * Listen to payments
+   * @todo create function to listen to payments when paid
+   */
+  public function PaymentListener()
   {
     // To be done
   }
 
+  /**
+   * Set the user id
+   * @param string $user_id
+   * @return null
+   */
   public function setUserID($user_id)
   {
     $this->user_id = $user_id;
   }
 
+  /**
+   * Set the transaction id
+   * @param string $transation_id
+   * @return null
+   */
   public function setTransactionID($transaction_id)
   {
     $this->transaction_id = $transaction_id;
   }
 
+  /**
+   * Set the rrr
+   * @param string $rrr
+   * @return null
+   */
   public function setRRR($rrr)
   {
     $this->rrr = $rrr;
   }
 
+  /**
+   * Set the payer name
+   * @param string $payerName
+   * @return null
+   */
   public function setpayerName($payerName)
   {
     $this->payerName = $payerName;
   }
 
+  /**
+   * Set the payer email
+   * @param string $payerEmail
+   * @return null
+   */
   public function setpayerEmail($payerEmail)
   {
     $this->payerEmail = $payerEmail;
   }
 
+  /**
+   * Set the payer phone
+   * @param string $payerPhone
+   * @return null
+   */
   public function setpayerPhone($payerPhone)
   {
     $this->payerPhone = $payerPhone;
   }
 
+  /**
+   * Set the payment description
+   * @param string $paymentDescription
+   * @return null
+   */
   public function setpaymentDescription($paymentDescription)
   {
     $this->paymentDescription = $paymentDescription;
   }
 
+  /**
+   * Set the amount
+   * @param string $amount
+   * @return null
+   */
   public function setAmount($amount)
   {
     $this->amount = $amount;
   }
 
-  public function sendEmail($value='')
+  /**
+   * Set the mode of the API to be used
+   * @param string $mode
+   * @return null
+   */
+  public function setMode($mode)
+  {
+    if ($mode==="LIVE" || $mode==="DEMO") {
+      $this->mode = $mode;
+    } else {
+      $this->mode = "DEMO";
+    }
+  }
+
+  /**
+   * Send email notifications
+   * @todo create function to use PHPMailer to send email notifications
+   */
+  public function sendEmail()
   {
     // To be done
   }
