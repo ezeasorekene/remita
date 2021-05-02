@@ -1,224 +1,229 @@
 Search.appendIndex(
     [
                 {
-            "fqsen": "\\RemitaPayments",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments",
             "name": "RemitaPayments",
             "summary": "",
-            "url": "classes/RemitaPayments.html"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/RemitaPayments.html#method___construct"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method___construct"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AgenerateRRR\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AgenerateRRR\u0028\u0029",
             "name": "generateRRR",
             "summary": "Generate\u0020RRR\u0020using\u0020given\u0020parameters",
-            "url": "classes/RemitaPayments.html#method_generateRRR"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_generateRRR"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AcheckRRRStatus\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AcheckRRRStatus\u0028\u0029",
             "name": "checkRRRStatus",
-            "summary": "Save\u0020generated\u0020RRR\u0020to\u0020database\u0020for\u0020future\u0020use",
-            "url": "classes/RemitaPayments.html#method_checkRRRStatus"
+            "summary": "Check\u0020the\u0020status\u0020of\u0020a\u0020transaction\u0020using\u0020RRR",
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_checkRRRStatus"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AgenerateTransactionID\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AgenerateTransactionID\u0028\u0029",
             "name": "generateTransactionID",
             "summary": "Generate\u0020and\u0020set\u0020transaction\u0020id",
-            "url": "classes/RemitaPayments.html#method_generateTransactionID"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_generateTransactionID"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AcheckTransactionIDStatus\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AcheckTransactionIDStatus\u0028\u0029",
             "name": "checkTransactionIDStatus",
             "summary": "Check\u0020the\u0020status\u0020of\u0020transaction\u0020using\u0020transaction\u0020id",
-            "url": "classes/RemitaPayments.html#method_checkTransactionIDStatus"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_checkTransactionIDStatus"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024dbconnect",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024dbconnect",
             "name": "dbconnect",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_dbconnect"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_dbconnect"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsaveGeneratedRRR\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsaveGeneratedRRR\u0028\u0029",
             "name": "saveGeneratedRRR",
             "summary": "Save\u0020generated\u0020RRR\u0020to\u0020database\u0020for\u0020future\u0020use",
-            "url": "classes/RemitaPayments.html#method_saveGeneratedRRR"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_saveGeneratedRRR"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AupdatePaymentStatus\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AupdatePaymentStatus\u0028\u0029",
             "name": "updatePaymentStatus",
             "summary": "Update\u0020payment\u0020status",
-            "url": "classes/RemitaPayments.html#method_updatePaymentStatus"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_updatePaymentStatus"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003ApayRRR\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003ApayRRR\u0028\u0029",
             "name": "payRRR",
             "summary": "Pay\u0020generated\u0020RRR",
-            "url": "classes/RemitaPayments.html#method_payRRR"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_payRRR"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003APaymentListener\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003APaymentListener\u0028\u0029",
             "name": "PaymentListener",
             "summary": "Listen\u0020to\u0020payments",
-            "url": "classes/RemitaPayments.html#method_PaymentListener"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_PaymentListener"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetUserID\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetUserID\u0028\u0029",
             "name": "setUserID",
             "summary": "Set\u0020the\u0020user\u0020id",
-            "url": "classes/RemitaPayments.html#method_setUserID"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setUserID"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetTransactionID\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetTransactionID\u0028\u0029",
             "name": "setTransactionID",
             "summary": "Set\u0020the\u0020transaction\u0020id",
-            "url": "classes/RemitaPayments.html#method_setTransactionID"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setTransactionID"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetRRR\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetRRR\u0028\u0029",
             "name": "setRRR",
             "summary": "Set\u0020the\u0020rrr",
-            "url": "classes/RemitaPayments.html#method_setRRR"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setRRR"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetpayerName\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetpayerName\u0028\u0029",
             "name": "setpayerName",
             "summary": "Set\u0020the\u0020payer\u0020name",
-            "url": "classes/RemitaPayments.html#method_setpayerName"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setpayerName"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetpayerEmail\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetpayerEmail\u0028\u0029",
             "name": "setpayerEmail",
             "summary": "Set\u0020the\u0020payer\u0020email",
-            "url": "classes/RemitaPayments.html#method_setpayerEmail"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setpayerEmail"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetpayerPhone\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetpayerPhone\u0028\u0029",
             "name": "setpayerPhone",
             "summary": "Set\u0020the\u0020payer\u0020phone",
-            "url": "classes/RemitaPayments.html#method_setpayerPhone"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setpayerPhone"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetpaymentDescription\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetpaymentDescription\u0028\u0029",
             "name": "setpaymentDescription",
             "summary": "Set\u0020the\u0020payment\u0020description",
-            "url": "classes/RemitaPayments.html#method_setpaymentDescription"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setpaymentDescription"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetAmount\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetAmount\u0028\u0029",
             "name": "setAmount",
             "summary": "Set\u0020the\u0020amount",
-            "url": "classes/RemitaPayments.html#method_setAmount"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setAmount"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetMode\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsetMode\u0028\u0029",
             "name": "setMode",
             "summary": "Set\u0020the\u0020mode\u0020of\u0020the\u0020API\u0020to\u0020be\u0020used",
-            "url": "classes/RemitaPayments.html#method_setMode"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_setMode"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsetAPIParamaters\u0028\u0029",
-            "name": "setAPIParamaters",
-            "summary": "Set\u0020the\u0020mode\u0020of\u0020the\u0020API\u0020to\u0020be\u0020used",
-            "url": "classes/RemitaPayments.html#method_setAPIParamaters"
-        },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AsendEmail\u0028\u0029",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AsendEmail\u0028\u0029",
             "name": "sendEmail",
             "summary": "Send\u0020email\u0020notifications",
-            "url": "classes/RemitaPayments.html#method_sendEmail"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#method_sendEmail"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AMERCHANT",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AMERCHANT",
             "name": "MERCHANT",
             "summary": "",
-            "url": "classes/RemitaPayments.html#constant_MERCHANT"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#constant_MERCHANT"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003AAPIKEY",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003AAPIKEY",
             "name": "APIKEY",
             "summary": "",
-            "url": "classes/RemitaPayments.html#constant_APIKEY"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#constant_APIKEY"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003ASERVICETYPEID",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003ASERVICETYPEID",
             "name": "SERVICETYPEID",
             "summary": "",
-            "url": "classes/RemitaPayments.html#constant_SERVICETYPEID"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#constant_SERVICETYPEID"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024user_id",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024user_id",
             "name": "user_id",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_user_id"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_user_id"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024transation_id",
-            "name": "transation_id",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024transaction_id",
+            "name": "transaction_id",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_transation_id"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_transaction_id"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024amount",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024amount",
             "name": "amount",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_amount"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_amount"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024rrr",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024rrr",
             "name": "rrr",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_rrr"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_rrr"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024payerName",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024payerName",
             "name": "payerName",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_payerName"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_payerName"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024payerEmail",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024payerEmail",
             "name": "payerEmail",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_payerEmail"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_payerEmail"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024payerPhone",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024payerPhone",
             "name": "payerPhone",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_payerPhone"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_payerPhone"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024paymentDescription",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024paymentDescription",
             "name": "paymentDescription",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_paymentDescription"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_paymentDescription"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024param",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024param",
             "name": "param",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_param"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_param"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024serviceTypeId",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024serviceTypeId",
             "name": "serviceTypeId",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_serviceTypeId"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_serviceTypeId"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024merchantId",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024merchantId",
             "name": "merchantId",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_merchantId"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_merchantId"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024apiKey",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024apiKey",
             "name": "apiKey",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_apiKey"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_apiKey"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024mode",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024mode",
             "name": "mode",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_mode"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_mode"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024dbhost",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024dbhost",
             "name": "dbhost",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_dbhost"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_dbhost"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024dbuser",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024dbuser",
             "name": "dbuser",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_dbuser"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_dbuser"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024dbpass",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024dbpass",
             "name": "dbpass",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_dbpass"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_dbpass"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024dbname",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024dbname",
             "name": "dbname",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_dbname"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_dbname"
         },                {
-            "fqsen": "\\RemitaPayments\u003A\u003A\u0024apiHash",
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway\\RemitaPayments\u003A\u003A\u0024apiHash",
             "name": "apiHash",
             "summary": "",
-            "url": "classes/RemitaPayments.html#property_apiHash"
+            "url": "classes/ezeasorekene-NGPaymentGateway-RemitaPayments.html#property_apiHash"
         },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
             "url": "namespaces/default.html"
+        },                {
+            "fqsen": "\\ezeasorekene\\NGPaymentGateway",
+            "name": "NGPaymentGateway",
+            "summary": "",
+            "url": "namespaces/ezeasorekene-ngpaymentgateway.html"
+        },                {
+            "fqsen": "\\ezeasorekene",
+            "name": "ezeasorekene",
+            "summary": "",
+            "url": "namespaces/ezeasorekene.html"
         }            ]
 );
