@@ -8,17 +8,22 @@ You can set a cron job to also fetch payment status and update them equally.
 ## Basic Usage
 ### Initiate the class
 ```
-$demo = new RemitaPayments("DEMO")
-$live = new RemitaPayments("LIVE",$merchantId,$apiKey,$serviceTypeId)
+use ezeasorekene\NGPaymentGateway\RemitaPayments;
+
+$demo = new RemitaPayments("DEMO");
+$live = new RemitaPayments("LIVE",$merchantId,$apiKey,$serviceTypeId);
 ```
 ### Generate RRR
 ```
+$demo->setAmount(20000);
+$live->setAmount(20000);
+
 $parameters =
   array
   (
-    'serviceTypeId' => $serviceTypeId,
-    'amount' => $amount,
-    'orderId' => $transaction_id,
+    'serviceTypeId' => $this->serviceTypeId,
+    'amount' => $this->amount,
+    'orderId' => $this->transaction_id,
     'payerName' => $payerName,
     'payerEmail' => $payerEmail,
     'payerPhone' => $payerPhone,
@@ -30,7 +35,7 @@ $rrr = $live->generateRRR($parameters)
 ```
 ###### Generate RRR Response
 ```
-rrr | false
+RRR | false
 ```
 
 ### Check RRR Status
@@ -42,6 +47,8 @@ $status = $live->checkRRRStatus($rrr)
 ```
 true | false
 ```
+
+Check out different examples [here](examples "RemitaPayments API Examples")
 
 You can read more about the class [here](docs/api/index.html "RemitaPayments API Documentation")
 
