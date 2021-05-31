@@ -1,5 +1,12 @@
 <?php
 /**
+ * Remita Payment Class
+ *
+ * This class can generate RRR, check transaction status either using RRR or transaction id.
+ * It can also save RRR details into the database and update them accordingly.
+ *
+ * A dedicated page listens to payments.
+ * You can set a cron job to also fetch payment status and update them equally.
  *
  * @author Ekene Ezeasor <ezeasorekene@unizik.edu.ng>
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
@@ -51,8 +58,8 @@ class RemitaPayments
 
   /**
    * Generate RRR using given parameters
-   * @param array $parameters
-   * @return mixed
+   * @param array $parameters This is an optional input if the values are already set
+   * @return mixed Returns the generated RRR on success or false or failure
    */
   public function generateRRR(array $parameters = [])
   {
@@ -122,9 +129,9 @@ class RemitaPayments
 
   /**
    * Check the status of a transaction using RRR
-   * @param string $rrr
-   * @param string $return_type
-   * @return mixed
+   * @param string $rrr The RRR to check its status
+   * @param string $return_type Default is bool. Set to 'array' to return an array
+   * @return mixed Return an array of rrr details if $return_type is array
    */
   public function checkRRRStatus(int $rrr=null,$return_type="bool")
   {
@@ -132,7 +139,6 @@ class RemitaPayments
     if ($this->mode=='LIVE') {
       $url = "https://login.remita.net/remita/exapp/api/v1/send/api/echannelsvc";
     } else {
-      // $url = "https://www.remitademo.net/remita/ecomm";
       $url = "https://remitademo.net/remita/exapp/api/v1/send/api/echannelsvc";
     }
 
@@ -189,9 +195,9 @@ class RemitaPayments
 
   /**
    * Check the status of transaction using transaction id
-   * @param string $transaction_id
-   * @param string $return_type
-   * @return mixed
+   * @param string $transaction_id The transaction ID you want to check its status
+   * @param string $return_type Default is bool. Set to 'array' to return an array
+   * @return mixed Return an array of rrr details if @$return_type is array
    */
   public function checkTransactionIDStatus($transaction_id=null,$return_type="bool")
   {
